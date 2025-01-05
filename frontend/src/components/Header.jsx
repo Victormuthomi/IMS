@@ -1,7 +1,19 @@
 import { FaSignInAlt, FaSignOutAlt, FaUser } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { logout, reset } from "../features/auth/authSlice";
 
 function Header() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth); // Destructure user from auth state
+
+  const onLogout = () => {
+    dispatch(logout());
+    dispatch(reset());
+    navigate("/");
+  };
+
   return (
     <header className="bg-white-800 text-black p-4">
       <div className="flex justify-between items-center">
@@ -11,31 +23,39 @@ function Header() {
         >
           Inventory Management
         </Link>
+
         <ul className="flex space-x-6">
-          <li>
-            <Link
-              to="/login"
-              className="flex items-center text-lg hover:text-blue-400"
-            >
-              <FaSignInAlt className="mr-2" /> Login
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/register"
-              className="flex items-center text-lg hover:text-blue-400"
-            >
-              <FaUser className="mr-2" /> Register
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/logout"
-              className="flex items-center text-lg hover:text-blue-400"
-            >
-              <FaSignOutAlt className="mr-2" /> Logout
-            </Link>
-          </li>
+          {user ? (
+            <>
+              <li>
+                <button
+                  className="flex items-center text-lg hover:text-blue-400"
+                  onClick={onLogout}
+                >
+                  <FaSignOutAlt className="mr-2" /> Logout
+                </button>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <Link
+                  to="/login"
+                  className="flex items-center text-lg hover:text-blue-400"
+                >
+                  <FaSignInAlt className="mr-2" /> Login
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/register"
+                  className="flex items-center text-lg hover:text-blue-400"
+                >
+                  <FaUser className="mr-2" /> Register
+                </Link>
+              </li>
+            </>
+          )}
         </ul>
       </div>
     </header>
