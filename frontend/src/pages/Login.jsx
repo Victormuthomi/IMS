@@ -1,22 +1,42 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaSignInAlt } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../features/auth/authSlice"; // Import the login action
+import { useNavigate } from "react-router-dom"; // For redirecting
 
 function Login() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-
   const { email, password } = formData;
 
+  const dispatch = useDispatch(); // Initialize dispatch
+  const navigate = useNavigate(); // Initialize navigate for redirect
+
+  // Redux states
+  const { user, isLoading, isError, message } = useSelector(
+    (state) => state.auth
+  );
+
+  // Handle form input changes
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // Handle form submission
   const onSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission here
+    const userCredentials = { email, password };
+    dispatch(login(userCredentials)); // Dispatch login async thunk
   };
+
+  // Redirect to dashboard or home page after successful login
+  useEffect(() => {
+    if (user) {
+      navigate("/"); // Redirect on successful login
+    }
+  }, [user, navigate]);
 
   return (
     <>
@@ -61,9 +81,20 @@ function Login() {
               />
             </div>
 
+            {isLoading && (
+              <div className="text-center text-gray-600 mb-4">
+                Logging in...
+              </div>
+            )}
+
+            {isError && (
+              <div className="text-center text-red-500 mb-4">{message}</div>
+            )}
+
             <button
               type="submit"
               className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700"
+              disabled={isLoading} // Disable button when loading
             >
               Login
             </button>

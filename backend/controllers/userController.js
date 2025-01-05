@@ -2,9 +2,10 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import asyncHandler from "express-async-handler";
 import User from "../models/userModel.js";
-//@desc register user
-//@route Post /api/users
-//@acess public
+
+// @desc    Register a new user
+// @route   POST /api/users
+// @access  Public
 export const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
 
@@ -13,29 +14,33 @@ export const registerUser = asyncHandler(async (req, res) => {
     throw new Error("Please add all the fields");
   }
 
-  //check if user exist
+  // Check if the user already exists
   const userExists = await User.findOne({ email });
   if (userExists) {
     res.status(400);
     throw new Error("User already exists");
   }
 
-  //hash pasword
+  // Hash the password
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
 
-  //create user
+  // Create the user
   const user = await User.create({
     name,
     email,
     password: hashedPassword,
-    token: generateToken(user._id),
   });
+
   if (user) {
+    // Generate token after successful user creation
+    const token = generateToken(user._id);
+
     res.status(201).json({
       _id: user.id,
       name: user.name,
       email: user.email,
+      token,
     });
   } else {
     res.status(400);
@@ -43,13 +48,13 @@ export const registerUser = asyncHandler(async (req, res) => {
   }
 });
 
-//@desc login user
-//@route Post /api/user/login
-//@acess public
+// @desc    Authenticate a user (Login)
+// @route   POST /api/users/login
+// @access  Public
 export const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
-  //check user by email
+  // Check for user by email
   const user = await User.findOne({ email });
 
   if (user && (await bcrypt.compare(password, user.password))) {
@@ -61,14 +66,16 @@ export const loginUser = asyncHandler(async (req, res) => {
     });
   } else {
     res.status(400);
-    throw new Error("Invalid login data");
+    throw new Error("Invalid login credentials");
   }
 });
-//@desc get user
-//@route get /api/user/me
-//@acess private
+
+// @desc    Get user data
+// @route   GET /api/users/me
+// @access  Private
 export const getUser = asyncHandler(async (req, res) => {
-  const { _id, email, name } = await User.findById(req.user.id);
+  const { _id, name, email } = await User.findById(req.user.id);
+
   res.status(200).json({
     id: _id,
     name,
@@ -76,9 +83,9 @@ export const getUser = asyncHandler(async (req, res) => {
   });
 });
 
-//generate jwt
+// Generate JWT Token
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: "1d",
+    expiresIn: "1d", // Token valid for 1 day
   });
 };
