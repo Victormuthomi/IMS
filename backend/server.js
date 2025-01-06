@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import colors from "colors";
+import cors from "cors";
 
 dotenv.config();
 
@@ -24,14 +25,22 @@ connectDB();
 
 const app = express();
 
+app.use(
+  cors({
+    origin: ["https://ims-6xgi.vercel.app/"],
+    methods: ["get", "post", "put", "delete"],
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 //use the item routes
 app.use("/api/items", itemRoutes);
 
-//use the use routes 
-app.use("/api/users", userRoutes)
+//use the use routes
+app.use("/api/users", userRoutes);
 
 //use the error handler middlerware
 app.use(errorHandler);
