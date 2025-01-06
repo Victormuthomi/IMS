@@ -1,4 +1,4 @@
-import { FaSignInAlt, FaSignOutAlt, FaUser } from "react-icons/fa";
+import { FaSignInAlt, FaSignOutAlt, FaUser, FaPlus } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout, reset } from "../features/auth/authSlice";
@@ -15,7 +15,7 @@ function Header() {
   };
 
   return (
-    <header className="bg-white-800 text-black p-4">
+    <header className="bg-white text-black p-4">
       <div className="flex justify-between items-center">
         <Link
           to="/"
@@ -34,6 +34,15 @@ function Header() {
                 >
                   <FaSignOutAlt className="mr-2" /> Logout
                 </button>
+              </li>
+              {/* Add Item Link */}
+              <li>
+                <Link
+                  to="/add-item"
+                  className="flex items-center text-lg hover:text-blue-400"
+                >
+                  <FaPlus className="mr-2" /> Add Item
+                </Link>
               </li>
             </>
           ) : (
