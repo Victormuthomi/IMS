@@ -21,7 +21,6 @@ function ItemForm() {
 
     // Dispatch the action to create the item
     dispatch(createItem({ name, quantity, unitPrice, SKU, description }));
-    navigate("/");
 
     // Clear form fields after submission
     setName("");
@@ -127,7 +126,7 @@ function ItemForm() {
           type="submit"
           className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg"
         >
-          Add Item
+          Submit
         </button>
       </form>
     </section>

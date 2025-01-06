@@ -44,9 +44,12 @@ export const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
 });
 
 // Logout user
-export const logout = createAsyncThunk("auth/logout", async () => {
+export const logout = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
   authService.logout();
   localStorage.removeItem("user");
+
+  // After logout, we navigate to the login page
+  thunkAPI.dispatch(reset()); // Optionally reset the state as well
 });
 
 export const authSlice = createSlice({
