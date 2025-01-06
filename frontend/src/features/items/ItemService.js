@@ -2,34 +2,54 @@ import axios from "axios";
 
 const API_URL = "/api/items";
 
-//create new item
+// Create new item
 const createItem = async (itemData, token) => {
   const config = {
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`, // Token is needed here
     },
   };
   const response = await axios.post(API_URL, itemData, config);
-
   return response.data;
 };
 
+// Get items (no authentication required)
+const getItems = async () => {
+  const response = await axios.get(API_URL); // No token required
+  return response.data;
+};
 
-//get items
-const getItems = async (itemData, token) => {
+// Edit item
+const editItem = async (itemData, token) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   };
-  const response = await axios.get(API_URL, config);
-
+  const response = await axios.put(
+    `${API_URL}/${itemData._id}`,
+    itemData,
+    config
+  );
   return response.data;
+};
+
+// Delete item
+const deleteItem = async (itemId, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await axios.delete(`${API_URL}/${itemId}`, config);
+  return response.data; 
 };
 
 const itemService = {
   createItem,
   getItems,
+  editItem,
+  deleteItem,
 };
 
 export default itemService;
