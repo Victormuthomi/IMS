@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { FaSignInAlt } from "react-icons/fa";
+import { FaLinkedinIn, FaSignInAlt } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../features/auth/authSlice"; // Import the login action
 import { useNavigate } from "react-router-dom"; // For redirecting
+import { Link } from "react-router-dom";
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -98,6 +99,21 @@ function Login() {
             >
               Login
             </button>
+            <p className="text-center mt-4 text-gray-600 mb-6">
+              Don't have an account?
+            </p>
+
+            <div className="flex justify-center items-center">
+              <Link
+                to="/register"
+                className={`bg-blue-600 text-white py-4 px-8 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 ${
+                  isLoading ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+                disabled={isLoading} // Disable button when loading
+              >
+                {isLoading ? "Loading..." : "Register"}
+              </Link>
+            </div>
           </form>
         </div>
       </section>
