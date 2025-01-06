@@ -25,13 +25,7 @@ connectDB();
 
 const app = express();
 
-app.use(
-  cors({
-    origin: ["https://ims-6xgi.vercel.app/"],
-    methods: ["get", "post", "put", "delete"],
-    credentials: true,
-  })
-);
+app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
