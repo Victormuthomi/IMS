@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "/api/items";
+const API_URL = "https://ims-r6pm.onrender.com//api/items";
 
 // Create new item
 const createItem = async (itemData, token) => {
@@ -42,7 +42,7 @@ const deleteItem = async (itemId, token) => {
     },
   };
   const response = await axios.delete(`${API_URL}/${itemId}`, config);
-  return response.data; 
+  return response.data;
 };
 
 const itemService = {
