@@ -71,14 +71,20 @@ function Dashboard() {
               <h1 className="text-5xl font-bold text-gray-800 mb-4">
                 Please Log In to Access Your Dashboard
               </h1>
-              <p className="text-lg text-gray-600 mb-6">
-                You need to log in to manage your items.
-              </p>
               <Link
                 to="/login"
-                className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded-full font-semibold text-lg shadow-lg"
+                className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 mt-6 mb-6 rounded-full font-semibold text-lg shadow-lg"
               >
                 Go to Login
+              </Link>
+              <h1 className="text-1xl mt-4 text-gray-800 mb-4">
+                Or create an account by
+              </h1>
+              <Link
+                to="/register"
+                className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded-full font-semibold text-lg shadow-lg"
+              >
+                Registering
               </Link>
             </>
           )}
