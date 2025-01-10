@@ -13,20 +13,22 @@ const Hero = () => {
         </div>
 
         {/* left */}
-        <div className="w-full lg:w-1/2  ">
-          <h1 className="text-white font-bold text-4xl">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry.{" "}
+        <div className="w-full lg:w-1/2 sm:content-center">
+          <h1 className="text-white text-right font-bold font-sans text-5xl">
+          Grow Your Business with Smarter Inventory Tools
           </h1>
-          <p className="my-5 text-base text-white">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book.
+          <p className="my-5 text-base font-mono font-mono text-right text-white">
+            Optimize your business processes and enhance efficiency, 
+            allowing you to dedicate more time 
+            and resources to what truly matters—creating meaningful value 
+            and exceptional experiences for your customers.
           </p>
-          <button className="my-10 p-5 text-white font-bold bg-green-700 hover:bg-green-400 transition-all duration-300 rounded  text-base">
+          <div className="flex justify-end">
+          <button className="my-10 p-3 w-48 text-3xl text-indigo-700 font-bold bg-green-400 hover:bg-green-400 transition-all duration-300 rounded-full  text-base">
+
             Get started
           </button>
+          </div>
         </div>
       </div>
     </div>
