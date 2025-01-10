@@ -7,6 +7,7 @@ import ItemForm from "./pages/ItemForm.jsx";
 import EditForm from "./components/EditForm.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.css";
+import Hero from "./components/Hero.jsx";
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
       <Router>
         <Header />
         <Routes>
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/" element={<Hero />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/add-item" element={<ItemForm />} />
