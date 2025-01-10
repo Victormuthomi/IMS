@@ -1,74 +1,62 @@
-import { FaSignInAlt, FaSignOutAlt, FaUser, FaPlus } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { logout, reset } from "../features/auth/authSlice";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { MdClose } from "react-icons/md";
+import { GiHamburgerMenu } from "react-icons/gi";
 
-function Header() {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth); // Destructure user from auth state
+const Header = () => {
+  const [open, setOpen] = useState(false);
 
-  const onLogout = () => {
-    dispatch(logout());
-    dispatch(reset());
-    navigate("/");
-  };
-
+  const links = [
+    {
+      name: "home",
+      path: "/home",
+    },
+    {
+      name: "about",
+      path: "/about",
+    },
+    {
+      name: "services",
+      path: "/services",
+    },
+    {
+      name: "contact",
+      path: "/contact",
+    },
+  ];
   return (
-    <header className="bg-white text-black p-4">
-      <div className="flex justify-between items-center">
-        <Link
-          to="/"
-          className="text-2xl font-bold text-slate-500 hover:text-blue-700"
+    <div className={`w-full fixed top-0 left-0 z-20  h-12 `}>
+      <div className="md:flex  container  mx-auto items-center justify-between">
+        {/* right side */}
+        <div>
+          <p className="font-bold text-3xl text-white cursor-pointer">IMS</p>
+        </div>
+        {/* left side */}
+        {/* icon */}
+        <div
+          className={`absolute right-8 top-6 cursor-pointer md:hidden w-7 h-7 text-white`}
+          onClick={() => setOpen(!open)}
         >
-          Inventory Management
-        </Link>
+          {open ? <MdClose /> : <GiHamburgerMenu />}
+        </div>
 
-        <ul className="flex space-x-6">
-          {user ? (
-            <>
-              <li>
-                <button
-                  className="flex items-center text-lg hover:text-blue-400"
-                  onClick={onLogout}
-                >
-                  <FaSignOutAlt className="mr-2" /> Logout
-                </button>
-              </li>
-              {/* Add Item Link */}
-              <li>
-                <Link
-                  to="/add-item"
-                  className="flex items-center text-lg hover:text-blue-400"
-                >
-                  <FaPlus className="mr-2" /> Add Item
-                </Link>
-              </li>
-            </>
-          ) : (
-            <>
-              <li>
-                <Link
-                  to="/login"
-                  className="flex items-center text-lg hover:text-blue-400"
-                >
-                  <FaSignInAlt className="mr-2" /> Login
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/register"
-                  className="flex items-center text-lg hover:text-blue-400"
-                >
-                  <FaUser className="mr-2" /> Register
-                </Link>
-              </li>
-            </>
-          )}
+        {/* links */}
+        <ul
+          className={` md:flex md:items-center md:pb-0 pb-12 absolute md:static md:z-auto z-[-1] left-0 md:pl-0 transition-all duration-500 ease-in text-white ${
+            open ? "top-12 bg-[#050816 ]" : "top-[-490px] bg-transparent"
+          } `}
+        >
+          {links?.map((link) => (
+            <li className="md:ml-8 md:y-0 font-semibold flex capitalize lg:text-white gap-4 ">
+              <Link to={link.path} className="text-white">
+                {link.name}
+              </Link>
+            </li>
+          ))}
         </ul>
       </div>
-    </header>
+    </div>
   );
-}
+};
 
 export default Header;
