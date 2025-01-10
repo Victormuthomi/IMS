@@ -25,7 +25,7 @@ const Header = () => {
     },
   ];
   return (
-    <div className={`w-full fixed top-0 left-0 z-20  h-12 `}>
+    <div className={`w-full mt-6 fixed top-0 left-0 z-20  h-12 `}>
       <div className="md:flex  container  mx-auto items-center justify-between">
         {/* right side */}
         <div>

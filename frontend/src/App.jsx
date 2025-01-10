@@ -15,7 +15,7 @@ function App() {
       <Router>
         <Header />
         <Routes>
-          <Route path="/" element={<Hero />} />
+          <Route path="/" element={<Dashboard />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/add-item" element={<ItemForm />} />

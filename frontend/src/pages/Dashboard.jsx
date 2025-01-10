@@ -5,8 +5,10 @@ import ItemForm from "./ItemForm";
 import Spinner from "../components/Spinner";
 import { getItems, reset } from "../features/items/itemSlice";
 import { logout as logoutAction } from "../features/auth/authSlice";
-import Item from "../components/item";
+import Item from '../components/item.jsx'
 import { Link } from "react-router-dom";
+import Hero from "../components/Hero.jsx";
+import Header from "../components/Header.jsx";
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -42,68 +44,23 @@ function Dashboard() {
 
   return (
     <>
-      <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-start p-8">
-        {/* Hero Section */}
-        <section className="bg-white shadow-lg rounded-lg p-12 w-full mb-8 text-center">
-          {user ? (
-            <>
-              <h1 className="text-5xl font-bold text-gray-800 mb-4">
-                Welcome{" "}
-                {user.name
-                  ? `${user.name.charAt(0).toUpperCase()}${user.name
-                      .slice(1)
-                      .toLowerCase()}`
-                  : "User"}{" "}
-                to Your Inventory Management Dashboard!
-              </h1>
-              <p className="text-lg text-gray-600 mb-6">
-                Manage your items effortlessly with our intuitive platform.
-              </p>
-              <Link
-                to="/add-item"
-                className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded-full font-semibold text-lg shadow-lg"
-              >
-                Get Started
-              </Link>
-            </>
-          ) : (
-            <>
-              <h1 className="text-5xl font-bold text-gray-800 mb-4">
-                Please Log In to Access Your Dashboard
-              </h1>
-              <Link
-                to="/login"
-                className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 mt-6 mb-6 rounded-full font-semibold text-lg shadow-lg"
-              >
-                Go to Login
-              </Link>
-              <h1 className="text-1xl mt-4 text-gray-800 mb-4">
-                Or create an account by
-              </h1>
-              <Link
-                to="/register"
-                className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded-full font-semibold text-lg shadow-lg"
-              >
-                Registering
-              </Link>
-            </>
-          )}
-        </section>
-        {user && <Item />} {/* Only show items if the user is logged in */}
-        {/* Button to Add Item */}
-        {user && (
-          <div className="flex justify-center w-full mb-4">
-            <button
-              className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-              onClick={() => navigate("/add-item")}
-            >
-              Add Item
-            </button>
+      {user ? (
+        <>
+          <Header />
+          <ItemForm />
+          <div>
+            <h2>Your Items</h2>
+            {/* Replace this with the actual items list */}
+            <Item />
           </div>
-        )}
-      </div>
+          <button onClick={handleLogout}>Logout</button>
+        </>
+      ) : (
+        <Hero />
+      )}
     </>
   );
 }
 
 export default Dashboard;
+
