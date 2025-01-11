@@ -9,8 +9,9 @@ import Item from '../components/item.jsx'
 import { Link } from "react-router-dom";
 import Hero from "../components/Hero.jsx";
 import Header from "../components/Header.jsx";
+import Dashboard from '../components/Dashboard.jsx'
 
-function Dashboard() {
+function Home() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
@@ -46,13 +47,7 @@ function Dashboard() {
     <>
       {user ? (
         <>
-          <Header />
-          <ItemForm />
-          <div>
-            <h2>Your Items</h2>
-            {/* Replace this with the actual items list */}
-            <Item />
-          </div>
+        <Dashboard />
           <button onClick={handleLogout}>Logout</button>
         </>
       ) : (
@@ -62,5 +57,5 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default Home;
 
