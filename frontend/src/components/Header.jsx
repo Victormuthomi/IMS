@@ -9,7 +9,7 @@ const Header = () => {
   const links = [
     {
       name: "home",
-      path: "/home",
+      path: "/",
     },
     {
       name: "about",
@@ -29,12 +29,14 @@ const Header = () => {
       <div className="md:flex  container  mx-auto items-center justify-between">
         {/* right side */}
         <div>
-          <p className="font-bold text-3xl text-white cursor-pointer">IMS</p>
+          <Link to="/" className="font-bold text-3xl text-white cursor-pointer ml-4">
+            IMS
+          </Link>
         </div>
         {/* left side */}
         {/* icon */}
         <div
-          className={`absolute right-8 top-6 cursor-pointer md:hidden w-7 h-7 text-white`}
+          className={`absolute right-8 top-6  cursor-pointer md:hidden w-7 h-7 text-white`}
           onClick={() => setOpen(!open)}
         >
           {open ? <MdClose /> : <GiHamburgerMenu />}
@@ -47,7 +49,7 @@ const Header = () => {
           } `}
         >
           {links?.map((link) => (
-            <li className="md:ml-8 md:y-0 font-semibold flex capitalize lg:text-white gap-4 ">
+            <li className="md:ml-8 md:y-0 font-semibold flex capitalize lg:text-white gap-4 ml-4 ">
               <Link to={link.path} className="text-white">
                 {link.name}
               </Link>
