@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { RxAvatar } from "react-icons/rx";
 import { CiSearch } from "react-icons/ci";
 import Calendar from "./calender.jsx";
 import SpiderChart from "./SpiderChart.jsx";
@@ -12,7 +11,7 @@ const DashboardC = () => {
     { name: "Dashboard", path: "/" },
     { name: "Chart", path: "/chart" },
     { name: "Settings", path: "/settings" },
-    { name: "Logout", path: "/logout" },
+    { name: "Logout", path: "/" },
   ];
 
   return (

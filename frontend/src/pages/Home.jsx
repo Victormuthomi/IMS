@@ -5,11 +5,11 @@ import ItemForm from "./ItemForm";
 import Spinner from "../components/Spinner";
 import { getItems, reset } from "../features/items/itemSlice";
 import { logout as logoutAction } from "../features/auth/authSlice";
-import Item from '../components/item.jsx'
+import Item from "../components/item.jsx";
 import { Link } from "react-router-dom";
 import Hero from "../components/Hero.jsx";
 import Header from "../components/Header.jsx";
-import Dashboard from '../components/Dashboard.jsx'
+import Dashboard from "../components/Dashboard.jsx";
 
 function Home() {
   const navigate = useNavigate();
@@ -47,8 +47,15 @@ function Home() {
     <>
       {user ? (
         <>
-        <Dashboard />
-          <button onClick={handleLogout}>Logout</button>
+          <div>
+            <button
+              onClick={handleLogout}
+              className=" font-green-500 font-semibold flex capitalize  ml-4"
+            >
+              Logout
+            </button>
+            <Dashboard />
+          </div>
         </>
       ) : (
         <Hero />
@@ -56,6 +63,4 @@ function Home() {
     </>
   );
 }
-
 export default Home;
-
