@@ -24,7 +24,7 @@ const Hero = () => {
           <div className="flex justify-end">
             <Link
               to="/login"
-              className="my-6 pl-4 pt-4 pb-4 mr-6 pr-4 w-32 text-3xl text-indigo-700 font-bold bg-green-400 hover:bg-green-400 transition-all duration-300 rounded-full  text-base"
+              className="my-6 pl-4 pt-4 pb-4 md:mr-6 mr-24 pr-4 w-32 text-base text-indigo-700 font-bold bg-green-400 hover:bg-green-400 transition-all duration-300 rounded-full  text-base"
             >
               Get started
             </Link>
