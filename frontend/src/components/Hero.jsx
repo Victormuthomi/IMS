@@ -15,13 +15,13 @@ const Hero = () => {
 
         {/* left */}
         <div className="w-full lg:w-1/2 sm:content-center">
-          <h1 className="text-white text-right font-bold font-sans md:text-5xl mr-6 text-3xl">
+          <h1 className="text-white md:text-right text-left font-bold font-sans md:text-5xl mr-6 text-2xl">
             Grow Your Business with Smarter Inventory Tools
           </h1>
-          <p className="my-5 text-base font-mono font-mono text-right text-white mr-6 md:text-3xl text-2xl">
+          <p className="my-5 text-base font-mono md:text-right text-left text-white mr-6 md:text-3xl text-1xl">
             Optimize your business processes and enhance efficiency, allowing
-            you to dedicate more time and resources to what truly
-            your customers.
+            you to dedicate more time and resources to what truly your
+            customers.
           </p>
           <div className="flex justify-end">
             <Link
