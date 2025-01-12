@@ -19,9 +19,7 @@ const Hero = () => {
             Grow Your Business with Smarter Inventory Tools
           </h1>
           <p className="my-5 text-base font-mono md:text-right text-left text-white mr-6 md:text-3xl text-1xl">
-            Optimize your business processes and enhance efficiency, allowing
-            you to dedicate more time and resources to what truly your
-            customers.
+            Optimize your business processes and enhance efficiency.
           </p>
           <div className="flex justify-end">
             <Link
