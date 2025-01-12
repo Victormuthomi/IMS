@@ -29,7 +29,10 @@ const Header = () => {
       <div className="md:flex  container  mx-auto items-center justify-between">
         {/* right side */}
         <div>
-          <Link to="/" className="font-bold text-3xl text-white cursor-pointer ml-4">
+          <Link
+            to="/"
+            className="font-bold text-3xl text-white cursor-pointer ml-4"
+          >
             IMS
           </Link>
         </div>
