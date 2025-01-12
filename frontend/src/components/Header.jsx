@@ -36,7 +36,7 @@ const Header = () => {
         {/* left side */}
         {/* icon */}
         <div
-          className={`absolute right-8 top-6  cursor-pointer md:hidden w-7 h-7 text-white`}
+          className={`absolute right-8 top-2  cursor-pointer md:hidden w-7 h-7 text-white`}
           onClick={() => setOpen(!open)}
         >
           {open ? <MdClose /> : <GiHamburgerMenu />}
