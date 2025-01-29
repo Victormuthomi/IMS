@@ -1,10 +1,17 @@
 import { useState, useEffect } from "react";
 import { FaUser } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { ImSpinner9 } from "react-icons/im";
 import { register, reset } from "../features/auth/authSlice.js";
 import Spinner from "../components/Spinner.jsx";
+import { FaEyeSlash, FaEye } from "react-icons/fa";
+import { MdOutlineMailOutline } from "react-icons/md";
+import { TbPasswordUser } from "react-icons/tb";
+import { FaSpinner } from "react-icons/fa";
+import { FaUserEdit } from "react-icons/fa";
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -20,7 +27,7 @@ function Register() {
   const dispatch = useDispatch();
 
   const { user, isLoading, isError, isSuccess, message } = useSelector(
-    (state) => state.auth
+    (state) => state.auth,
   );
 
   useEffect(() => {
@@ -54,88 +61,112 @@ function Register() {
   };
 
   if (isLoading) {
-    return <Spinner />;
+    return (
+      <div className="flex justify-center items-center animate-spin ">
+        <ImSpinner9 className="  text-blue-500 text-8xl mt-16" />
+      </div>
+    );
   }
 
   return (
     <>
-      <section className="bg-gray-100 min-h-screen flex justify-center items-center">
-        <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-          <h1 className="text-3xl font-semibold text-center text-gray-900 mb-6">
-            <FaUser className="inline-block mr-2 text-blue-600" />
-            Register
+      <section className="bg-gray-100 min-h-screen bg-gradient-to-r from-[#FF007a] to-[#4b0082] flex justify-center items-center">
+        <div className="bg-transparent h-[700px] w-[1200px] p-8 rounded-lg  max-w-md">
+          <div className="flex justify-center items-center">
+            <FaUser className="mr-2 text-8xl text-slate-50 mb-4" />
+          </div>
+          <h1 className="text-3xl font-semibold text-center text-gray-50 mb-6">
+            Register and join us!
           </h1>
-          <p className="text-center text-gray-600 mb-6">
-            Please create an account
-          </p>
 
           <form onSubmit={onSubmit}>
-            <div className="mb-4">
-              <label htmlFor="name" className="block text-gray-700">
-                Full Name
-              </label>
+            <div className="relative mb-4">
+              <div className="absolute mt-4 text-white ml-2 text-3xl">
+                <FaUserEdit />
+              </div>
+
               <input
                 type="text"
                 id="name"
                 name="name"
                 value={name}
-                placeholder="Enter your name"
+                placeholder="Full Name"
                 onChange={onChange}
-                className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+                className="w-full bg-transparent px-14 py-2 mt-2 border-b-4 rounded-md text-white placeholder:text-white text-2xl focus:outline-none focus:border-yellow-500"
               />
             </div>
+            <div className="relative mb-4">
+              <div className="absolute mt-4 text-white ml-2 text-3xl">
+                <MdOutlineMailOutline />
+              </div>
 
-            <div className="mb-4">
-              <label htmlFor="email" className="block text-gray-700">
-                Email
-              </label>
               <input
                 type="email"
                 id="email"
                 name="email"
                 value={email}
-                placeholder="Enter your email"
+                placeholder="Email"
                 onChange={onChange}
-                className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+                className="w-full bg-transparent px-14 py-2 mt-2 border-b-4 rounded-md text-white placeholder:text-white text-2xl focus:outline-none focus:border-yellow-500"
               />
             </div>
 
-            <div className="mb-4">
-              <label htmlFor="password" className="block text-gray-700">
-                Password
-              </label>
+            <div className="relative mb-4">
+              <div className="absolute mt-4 text-white ml-2 text-3xl">
+                <TbPasswordUser />
+              </div>
+
               <input
                 type="password"
                 id="password"
                 name="password"
                 value={password}
-                placeholder="Enter your password"
+                placeholder="Password"
                 onChange={onChange}
-                className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+                className="w-full bg-transparent px-14 py-2 mt-2 border-b-4 rounded-md text-white placeholder:text-white text-2xl focus:outline-none focus:border-yellow-500"
               />
             </div>
 
-            <div className="mb-6">
-              <label htmlFor="password2" className="block text-gray-700">
-                Confirm Password
-              </label>
+            <div className="relative mb-6">
+              <div className="absolute mt-4 text-white ml-2 text-3xl">
+                <TbPasswordUser />
+              </div>
+
               <input
                 type="password"
                 id="password2"
                 name="password2"
                 value={password2}
-                placeholder="Confirm your password"
+                placeholder="Confirm  password"
                 onChange={onChange}
-                className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+                className="w-full bg-transparent px-14 py-2 mt-2 border-b-4 rounded-md text-white placeholder:text-white text-2xl focus:outline-none focus:border-yellow-500"
               />
             </div>
 
-            <button
-              type="submit"
-              className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700"
-            >
-              Register
-            </button>
+            <div className="flex justify-center items-center">
+              <button
+                type="submit"
+                className="text-2xl w-32 text- font-bold bg-green-400 hover:bg-transparent hover:text-white transition-all duration-300 rounded-full"
+              >
+                Register
+              </button>
+            </div>
+            <div className="flex justify-center items-center mt-6 mb-6 gap-4">
+              <p className="text-white italic">Already have an account</p>
+              <Link
+                to="/login"
+                className={`text-white italic underline hover:text-yellow-500 ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
+                disabled={isLoading} // Disable button when loading
+              >
+                {isLoading ? (
+                  <div className="flex justify-center items-center text-2xl text-slate-50 mb-4 animate-spin">
+                    <FaSpinner />
+                  </div>
+                ) : (
+                  "Login"
+                )}
+              </Link>
+            </div>
           </form>
         </div>
       </section>

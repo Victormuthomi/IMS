@@ -2,10 +2,10 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import ItemForm from "./ItemForm";
-import Spinner from "../components/Spinner";
+import { ImSpinner9 } from "react-icons/im";
 import { getItems, reset } from "../features/items/itemSlice";
 import { logout as logoutAction } from "../features/auth/authSlice";
-import Item from "../components/item.jsx";
+import Items from "../components/Items.jsx";
 import { Link } from "react-router-dom";
 import Hero from "../components/Hero.jsx";
 import Header from "../components/Header.jsx";
@@ -40,22 +40,18 @@ function Home() {
   }, [user, navigate, isError, message, dispatch]);
 
   if (isLoading) {
-    return <Spinner />;
+    return (
+      <div className="flex justify-center items-center animate-spin ">
+        <ImSpinner9 className="  text-blue-500 text-8xl mt-16" />
+      </div>
+    );
   }
 
   return (
     <>
       {user ? (
         <>
-          <div>
-            <button
-              onClick={handleLogout}
-              className=" font-green-500 font-semibold flex capitalize  ml-4"
-            >
-              Logout
-            </button>
-            <Dashboard />
-          </div>
+          <Dashboard />
         </>
       ) : (
         <Hero />

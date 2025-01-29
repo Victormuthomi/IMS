@@ -1,25 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteItem } from "../features/items/itemSlice"; // Keep deleteItem
 import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
+import { getItems } from "../features/items/itemSlice";
 
-// Add icon imports (For example, using FontAwesome)
 import { FaEdit, FaTrashAlt, FaArrowDown, FaArrowUp } from "react-icons/fa"; // Example icons
 
 function Item() {
   const dispatch = useDispatch();
   const navigate = useNavigate(); // Initialize navigate
   const { items } = useSelector((state) => state.items);
+  console.log(getItems);
 
-  // State to control whether the "Show More" button is clicked
+  useEffect(() => {
+    dispatch(getItems()); // Fetch items when the component loads
+  }, [dispatch]);
+
   const [showMore, setShowMore] = useState(false);
 
-  // Function to handle the edit button click
   const handleEdit = (itemId) => {
     navigate(`/edit-item/${itemId}`); // Redirect to the edit form with the item's id
   };
 
-  // Function to handle the "Show More" button click
   const handleShowMore = () => {
     setShowMore(!showMore); // Toggle between showing more or less items
   };
@@ -45,7 +47,6 @@ function Item() {
               <div className="text-gray-600">Price: ${item.unitPrice}</div>
               <div className="text-gray-600">Quantity: {item.quantity}</div>
 
-              {/* Edit and Delete buttons with blue background and icons */}
               <div className="flex space-x-4 mt-4">
                 <button
                   onClick={() => handleEdit(item._id)} // Use the navigate function for edit
