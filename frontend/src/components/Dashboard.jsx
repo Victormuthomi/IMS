@@ -1,26 +1,35 @@
 import { Link } from "react-router-dom";
 import { CiSearch } from "react-icons/ci";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import Calendar from "./calender.jsx";
 import SpiderChart from "./SpiderChart.jsx";
 import Linechart from "./LineChart.jsx";
 import Piechart from "./PieChart.jsx";
 import { FaRegUser } from "react-icons/fa";
+import { logout as logoutAction } from "../features/auth/authSlice";
 
 const DashboardC = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logoutAction()); // Dispatch logout action
+    navigate("/login"); // Redirect to login page after logout
+  };
   const links = [
-    { name: "Dashboard", path: "/" },
-    { name: "Chart", path: "/chart" },
-    { name: "Settings", path: "/settings" },
-    { name: "Logout", path: "/" },
+    { name: "Profile", path: "/profile" },
+    { name: "Items", path: "/Items" },
+    { name: "Add item", path: "/add-item" },
   ];
 
   return (
-    <div className="flex h-screen bg-violet-400">
+    <div className="flex h-screen bg-gradient-to-r from-[#FF007a] to-[#4b0082]">
       {/* Sidebar */}
-      <div className="w-64 bg-indigo-950 mt-32 ml-24 mb-24 text-slate-900">
+      <div className="w-64 bg-indigo-950 mt-32 ml-48 mb-24 text-slate-900">
         <div className="pt-12 pl-16 pb-12 text-white ">
           <FaRegUser size={80} />
-          <p className="text-white pt-2 text-lato">@username</p>
+          <p className="text-white pt-2 text-lato">{}</p>
         </div>
 
         <div>
@@ -32,6 +41,14 @@ const DashboardC = () => {
                 </Link>
               </li>
             ))}
+            <li>
+              <button
+                onClick={handleLogout}
+                className="hover:bg-violet-600 active:bg-violet-700 border-t  p-4 w-full text-center p-4 cursor-pointer"
+              >
+                Logout
+              </button>
+            </li>
           </ul>
         </div>
       </div>
@@ -66,18 +83,18 @@ const DashboardC = () => {
                 $ 800.20
               </h1>
               <p className="text-sm  bg-slate-50 font-lato text-center text-slate-500 rounded-sm">
-                Lorem ipsum dolor, sit amet consecte
+                Grand total of sales of the store
               </p>
             </div>
             <div className="h-34 ">
               <h1 className="bg-yellow-500 text-left h-8 text-white pl-4 pt-1 rounded-sm">
-                Total Sales
+                Total Items
               </h1>
               <h1 className="bg-slate-50 font-lato font-semibold text-green-500 text-3xl text-center p-2 rounded-sm ">
-                $ 800.20
+                400
               </h1>
               <p className="text-sm bg-slate-50 font-lato text-center text-slate-500 rounded-sm">
-                Lorem ipsum dolor, sit amet consecte
+                Grand total of total item in the store
               </p>
             </div>
           </div>
