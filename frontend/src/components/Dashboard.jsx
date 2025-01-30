@@ -26,7 +26,7 @@ const DashboardC = () => {
   return (
     <div className="flex h-screen bg-gradient-to-r from-[#FF007a] to-[#4b0082]">
       {/* Sidebar */}
-      <div className="w-64 bg-indigo-950 mt-32 ml-48 mb-24 text-slate-900">
+      <div className="w-64 bg-[#4b0082] mt-32 ml-48 mb-24 text-slate-900">
         <div className="pt-12 pl-16 pb-12 text-white ">
           <FaRegUser size={80} />
           <p className="text-white pt-2 text-lato">{}</p>
@@ -54,10 +54,10 @@ const DashboardC = () => {
       </div>
 
       {/* Main content */}
-      <div className="w-3/5 bg-blue-200 mt-32 mb-24">
-        <div className="w-full h-20 bg-blue-100 flex grid grid-cols-2 pt-6 ">
+      <div className="w-3/5 bg-gradient-to-t from-[#4b0082] to-[#FF007a] mt-32 mb-24">
+        <div className="w-full h-20 bg-gradient-to-r from-[#4b0082] to-[#FF007a] flex grid grid-cols-2 pt-6 ">
           <div>
-            <h1 className="w-1/2 ml-4 font-bold text-left text-2xl fonts-lato ">
+            <h1 className="w-1/2 ml-4 font-bold text-white text-left text-2xl fonts-lato ">
               Welcome Back!
             </h1>
           </div>
