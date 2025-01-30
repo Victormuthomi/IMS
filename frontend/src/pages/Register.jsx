@@ -70,7 +70,7 @@ function Register() {
 
   return (
     <>
-      <section className="bg-gray-100 min-h-screen bg-gradient-to-r from-[#FF007a] to-[#4b0082] flex justify-center items-center">
+      <section className="bg-gray-100 min-h-screen bg-gradient-to-t from-[#FF007a] to-[#4b0082] flex justify-center items-center">
         <div className="bg-transparent h-[700px] w-[1200px] p-8 rounded-lg  max-w-md">
           <div className="flex justify-center items-center">
             <FaUser className="mr-2 text-8xl text-slate-50 mb-4" />

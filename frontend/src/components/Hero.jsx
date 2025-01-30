@@ -3,7 +3,7 @@ import imagePath from "../assets/images/rb_517.png";
 
 const Hero = () => {
   return (
-    <div className=" h-screen sm:min-h  lg:min-h-[85vh] bg-gradient-to-r from-[#FF007a] to-[#4b0082]   relative py-32    ">
+    <div className=" h-screen sm:min-h  lg:min-h-[85vh] bg-gradient-to-t from-[#FF007a] to-[#4b0082]   relative py-32    ">
       <div
         className="flex container mx-auto justify-center items-center h-full        
       "

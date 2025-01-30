@@ -12,6 +12,10 @@ export const itemSchema = mongoose.Schema(
       type: String,
       required: [true, "Please add a name"],
     },
+    category: {
+      type: String,
+      required: [true, "Please add a category"],
+    },
     quantity: {
       type: Number,
       required: false,
@@ -32,7 +36,7 @@ export const itemSchema = mongoose.Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 const Item = mongoose.model("Item", itemSchema);
