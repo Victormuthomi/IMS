@@ -1,22 +1,30 @@
 import { Link } from "react-router-dom";
 import { CiSearch } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Calendar from "./calender.jsx";
 import SpiderChart from "./SpiderChart.jsx";
 import Linechart from "./LineChart.jsx";
 import Piechart from "./PieChart.jsx";
 import { FaRegUser } from "react-icons/fa";
 import { logout as logoutAction } from "../features/auth/authSlice";
+import { useEffect } from "react";
+import { getItems } from "../features/items/itemSlice.js";
 
 const DashboardC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const items = useSelector((state) => state.items.data || []);
+
+  useEffect(() => {
+    dispatch(getItems());
+  }, [dispatch]);
 
   const handleLogout = () => {
     dispatch(logoutAction()); // Dispatch logout action
     navigate("/login"); // Redirect to login page after logout
   };
+
   const links = [
     { name: "Profile", path: "/profile" },
     { name: "Items", path: "/Items" },
@@ -35,7 +43,10 @@ const DashboardC = () => {
         <div>
           <ul className="text-white font-lato">
             {links?.map((link) => (
-              <li className="hover:bg-violet-600 active:bg-violet-700 border-t  p-4 w-full text-center p-4 cursor-pointer">
+              <li
+                key={link.path}
+                className="hover:bg-violet-600 active:bg-violet-700 border-t  p-4 w-full text-center p-4 cursor-pointer"
+              >
                 <Link to={link.path} className="text-white">
                   {link.name}
                 </Link>
@@ -58,7 +69,8 @@ const DashboardC = () => {
         <div className="w-full h-20 bg-gradient-to-r from-[#4b0082] to-[#FF007a] flex grid grid-cols-2 pt-6 ">
           <div>
             <h1 className="w-1/2 ml-4 font-bold text-white text-left text-2xl fonts-lato ">
-              Welcome Back!
+              Description:{" "}
+              {items.length > 0 ? items[0].description : "No items available"}
             </h1>
           </div>
           {/* search bar*/}
@@ -68,6 +80,7 @@ const DashboardC = () => {
             </div>
           </div>
         </div>
+
         <div className="grid grid-cols-3 gap-6 w-5/6 ml-24 mt-8">
           {/* First Row */}
           <div className="h-68 flex items-center justify-center">

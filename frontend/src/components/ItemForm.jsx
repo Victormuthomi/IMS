@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 function ItemForm() {
   const [name, setName] = useState("");
+  const [category, setCategory] = useState("");
   const [quantity, setQuantity] = useState(0);
   const [unitPrice, setUnitPrice] = useState(0);
   const [SKU, setSKU] = useState("");
@@ -25,6 +26,7 @@ function ItemForm() {
 
     // Clear form fields after submission
     setName("");
+    setCategory("");
     setQuantity(0);
     setUnitPrice(0);
     setSKU("");
@@ -50,6 +52,24 @@ function ItemForm() {
             onChange={(e) => setName(e.target.value)}
             className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Enter item name"
+            required
+          />
+        </div>
+
+        <div className="mb-4">
+          <label
+            htmlFor="category"
+            className="block text-gray-700 font-medium mb-2"
+          >
+            Category
+          </label>
+          <input
+            type="text"
+            id="category"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="Enter item category"
             required
           />
         </div>
